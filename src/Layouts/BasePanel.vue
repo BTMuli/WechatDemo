@@ -38,7 +38,7 @@
 </template>
 <script lang="ts" setup>
 import { getCurrentWindow } from "@tauri-apps/api/window";
-import { defineProps, ref, withDefaults } from "vue";
+import { ref } from "vue";
 
 interface BasePanelProps {
   title: string;
@@ -163,6 +163,8 @@ async function close(): Promise<void> {
 }
 
 .rotate-icon {
-  transform: rotate(-45deg);
+  svg {
+    transform: rotate(-45deg);
+  }
 }
 </style>

@@ -2,6 +2,24 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
   "description": "Capability for the main window",
-  "windows": ["main"],
-  "permissions": ["core:default", "shell:allow-open"]
+  "windows": ["WechatDemo"],
+  "permissions": [
+    "core:default",
+    "core:window:allow-close",
+    "core:window:allow-minimize",
+    "core:window:allow-maximize",
+    "core:window:allow-set-always-on-top",
+    "shell:allow-open",
+    {
+      "identifier": "http:default",
+      "allow": [
+        {
+          "url": "https://**"
+        },
+        {
+          "url": "http://**"
+        }
+      ]
+    }
+  ]
 }
