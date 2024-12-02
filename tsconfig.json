@@ -26,6 +26,7 @@
     "src/**/*.vue",
     "tsconfig.json",
     "vite.config.ts",
+    "components.d.ts",
     "eslint.config.mjs"
   ],
   "exclude": ["node_modules"]
