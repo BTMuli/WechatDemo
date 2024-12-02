@@ -12,9 +12,12 @@
   "app": {
     "windows": [
       {
-        "title": "wechat-demo",
-        "width": 800,
-        "height": 600
+        "title": "微信",
+        "width": 280,
+        "height": 380,
+        "label": "WechatDemo",
+        "center": true,
+        "decorations": false
       }
     ],
     "security": {

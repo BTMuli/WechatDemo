@@ -14,8 +14,12 @@
     "lib": ["DOM", "ESNext"],
     "skipLibCheck": true,
     "types": ["vite/client"],
+    "baseUrl": ".",
     "allowSyntheticDefaultImports": true,
-    "composite": true
+    "composite": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": [
     "*.yml",

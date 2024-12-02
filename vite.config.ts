@@ -28,6 +28,11 @@ export default defineConfig(async () => ({
     hmr: host ? { protocol: "ws", host, port: 1421 } : undefined,
     watch: { ignored: ["**/src-tauri/**"] },
   },
+  resolve: {
+    alias: {
+      "@": "/src",
+    },
+  },
   build: {
     rollupOptions: {
       output: {
