@@ -1,29 +1,16 @@
-<script setup lang="ts">
-import { ref } from "vue";
-import { invoke } from "@tauri-apps/api/core";
-
-const greetMsg = ref("");
-const name = ref("");
-
-async function greet() {
-  // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-  greetMsg.value = await invoke("greet", { name: name.value });
-}
-</script>
-
 <template>
   <main class="container">
     <h1>Welcome to Tauri + Vue</h1>
 
     <div class="row">
       <a href="https://vitejs.dev" target="_blank">
-        <img src="/vite.svg" class="logo vite" alt="Vite logo" />
+        <img alt="Vite logo" class="logo vite" src="/vite.svg" />
       </a>
       <a href="https://tauri.app" target="_blank">
-        <img src="/tauri.svg" class="logo tauri" alt="Tauri logo" />
+        <img alt="Tauri logo" class="logo tauri" src="/tauri.svg" />
       </a>
       <a href="https://vuejs.org/" target="_blank">
-        <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+        <img alt="Vue logo" class="logo vue" src="./assets/vue.svg" />
       </a>
     </div>
     <p>Click on the Tauri, Vite, and Vue logos to learn more.</p>
@@ -35,7 +22,18 @@ async function greet() {
     <p>{{ greetMsg }}</p>
   </main>
 </template>
+<script lang="ts" setup>
+import { invoke } from "@tauri-apps/api/core";
+import { ref } from "vue";
 
+const greetMsg = ref("");
+const name = ref("");
+
+async function greet() {
+  // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
+  greetMsg.value = await invoke("greet", { name: name.value });
+}
+</script>
 <style scoped>
 .logo.vite:hover {
   filter: drop-shadow(0 0 2em #747bff);
@@ -44,39 +42,36 @@ async function greet() {
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #249b73);
 }
-
 </style>
 <style>
 :root {
+  background-color: #f6f6f6;
+  color: #0f0f0f;
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color: #0f0f0f;
-  background-color: #f6f6f6;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  font-synthesis: none;
+  font-weight: 400;
+  line-height: 24px;
+  text-rendering: optimizelegibility;
+  text-size-adjust: 100%;
 }
 
 .container {
-  margin: 0;
-  padding-top: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-top: 10vh;
+  margin: 0;
   text-align: center;
 }
 
 .logo {
   height: 6em;
   padding: 1.5em;
-  will-change: filter;
   transition: 0.75s;
+  will-change: filter;
 }
 
 .logo.tauri:hover {
@@ -89,8 +84,8 @@ async function greet() {
 }
 
 a {
-  font-weight: 500;
   color: #646cff;
+  font-weight: 500;
   text-decoration: inherit;
 }
 
@@ -104,16 +99,17 @@ h1 {
 
 input,
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
   padding: 0.6em 1.2em;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 2px rgb(0 0 0 / 20%);
+  color: #0f0f0f;
+  font-family: inherit;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
-  color: #0f0f0f;
-  background-color: #ffffff;
+  outline: none;
   transition: border-color 0.25s;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 button {
@@ -123,14 +119,10 @@ button {
 button:hover {
   border-color: #396cd8;
 }
+
 button:active {
   border-color: #396cd8;
   background-color: #e8e8e8;
-}
-
-input,
-button {
-  outline: none;
 }
 
 #greet-input {
@@ -139,8 +131,8 @@ button {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    color: #f6f6f6;
     background-color: #2f2f2f;
+    color: #f6f6f6;
   }
 
   a:hover {
@@ -149,12 +141,12 @@ button {
 
   input,
   button {
-    color: #ffffff;
     background-color: #0f0f0f98;
+    color: #fff;
   }
+
   button:active {
     background-color: #0f0f0f69;
   }
 }
-
 </style>
