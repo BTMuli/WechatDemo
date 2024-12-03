@@ -1,16 +1,12 @@
 <template>
   <div class="base-panel-layout">
     <div class="nav">
-      <div class="title">{{ props.title }}</div>
+      <div class="title">
+        <slot name="title" />
+      </div>
       <div class="acts">
-        <NavActItem v-if="showSetting" title="设置" @click="toSetting()">
-          <icon-weui-setting-outlined />
-        </NavActItem>
-        <NavActItem v-if="showLogin" title="登录" @click="toLogin()">
-          <icon-weui-me-outlined />
-        </NavActItem>
         <NavActItem
-          v-if="showPin"
+          v-if="props.showPin"
           class="act-item"
           :class="{ 'rotate-icon': isPin }"
           @click="switchPin()"
@@ -19,11 +15,17 @@
           <icon-tdesign-pin v-if="!isPin" />
           <icon-tdesign-pin-filled v-else />
         </NavActItem>
-        <NavActItem v-if="showMin" class="act-item" @click="minimize()" title="最小化">
+        <NavActItem v-if="props.showSetting" title="设置" @click="toSetting()">
+          <icon-weui-setting-outlined />
+        </NavActItem>
+        <NavActItem v-if="props.showLogin" title="登录" @click="toLogin()">
+          <icon-weui-me-outlined />
+        </NavActItem>
+        <NavActItem v-if="props.showMin" class="act-item" @click="minimize()" title="最小化">
           <icon-qlementine-icons-windows-minimize-16 />
         </NavActItem>
         <NavActItem
-          v-if="showMax"
+          v-if="props.showMax"
           class="act-item"
           @click="maximize()"
           :title="isMaximized ? '向下还原' : '最大化'"
@@ -31,7 +33,7 @@
           <icon-qlementine-icons-windows-unmaximize-16 v-if="isMaximized" />
           <icon-qlementine-icons-windows-maximize-16 v-else />
         </NavActItem>
-        <NavActItem v-if="showClose" class="act-item close" @click="close()" title="关闭">
+        <NavActItem v-if="props.showClose" class="act-item close" @click="close()" title="关闭">
           <icon-qlementine-icons-windows-close-16 />
         </NavActItem>
       </div>
@@ -46,7 +48,6 @@ import { ref } from "vue";
 import router from "@/router/index.js";
 
 interface BasePanelProps {
-  title: string;
   showLogin?: boolean;
   showSetting?: boolean;
   showClose?: boolean;
@@ -60,7 +61,7 @@ const props = withDefaults(defineProps<BasePanelProps>(), {
   showSetting: false,
   showLogin: false,
   showClose: true,
-  showPin: false,
+  showPin: true,
   showMin: false,
   showMax: false,
   closeType: 1,

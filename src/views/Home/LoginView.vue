@@ -1,5 +1,6 @@
 <template>
-  <BasePanel title="微信-登录" :show-setting="true" :show-close="true">
+  <BasePanel :show-setting="true" :show-close="true">
+    <template #title>微信-登录</template>
     <!-- 快速登录页面 -->
     <AutoLoginView v-if="isLogin" />
     <!-- 普通登录页面 -->

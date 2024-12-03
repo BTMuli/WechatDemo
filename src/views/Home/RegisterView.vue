@@ -1,5 +1,6 @@
 <template>
-  <BasePanel title="微信-注册" :show-setting="true">
+  <BasePanel :show-setting="true">
+    <template #title>微信-注册</template>
     <div class="register-form">
       <ElImage src="/logo.png" class="logo" fit="contain" />
       <ElForm :model="formData" label-width="auto" label-position="left">

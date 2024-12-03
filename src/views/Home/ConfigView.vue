@@ -1,5 +1,6 @@
 <template>
-  <BasePanel title="微信-配置" :show-login="true" :show-close="true">
+  <BasePanel :show-login="true" :show-close="true">
+    <template #title>微信-配置</template>
     <div class="home-config-view">
       <div class="title">网络代理设置</div>
       <div class="radios">
