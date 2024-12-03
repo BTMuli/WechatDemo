@@ -22,7 +22,7 @@
   },
   "lint-staged": {
     "*.{d.ts,ts}": [
-      "eslint --fix",
+      "eslint --fix --no-warn-ignored",
       "prettier --write"
     ],
     "*.vue": [

@@ -1,61 +1,61 @@
-<script lang="ts" setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-
-const formData = ref({});
-const formDataRef = ref();
-const router = useRouter();
-const changeAccount = () => {
-  router.push("/register");
-};
-</script>
-
 <template>
   <div class="login-form">
-    <div class="error-msg"></div>
-    <ElForm ref="formDataRef" label-width="0px" @submit.prevent>
-      <ElFormItem label="" prop="phone">
-        <ElInput
-          type="tel"
-          size="large"
-          placeholder="请输入手机号"
-          clearable
-          v-model.trim="formData.email"
-        />
+    <ElImage src="/logo.png" class="logo" fit="contain" @click="switchAccount()" />
+    <ElForm label-width="auto" label-position="left">
+      <ElFormItem label="手机号" prop="phone">
+        <ElInput type="tel" clearable v-model="formData.phone" />
       </ElFormItem>
-      <ElFormItem label="" prop="password">
-        <ElInput type="password" size="large" placeholder="请输入密码" clearable />
+      <ElFormItem label="验证码" prop="autoCode">
+        <ElInput type="text" clearable v-model="formData.authCode">
+          <template #append>
+            <ElButton type="primary">获取验证码</ElButton>
+          </template>
+        </ElInput>
       </ElFormItem>
     </ElForm>
-    <ElLink :underline="false" class="action-link" @click="changeAccount">没有账号?</ElLink>
-    <ElButton type="success" class="register-button" size="small" @click="loginFun">登录</ElButton>
+    <ElButton color="#07c160" size="large" @click="tryLogin()">登录</ElButton>
+    <ElLink :underline="false" class="action-link" @click="toRegister()">没有账号?</ElLink>
   </div>
 </template>
 
+<script lang="ts" setup>
+import { storeToRefs } from "pinia";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+import { useAppStore } from "@/store/modules/app.js";
+
+type LoginFormData = { phone: string; authCode: string };
+
+const formData = ref<LoginFormData>({ phone: "", authCode: "" });
+const router = useRouter();
+const { isLogin } = storeToRefs(useAppStore());
+
+async function toRegister(): Promise<void> {
+  await router.push({ name: "注册" });
+}
+
+async function tryLogin(): Promise<void> {
+  console.log(formData.value);
+}
+
+function switchAccount(): void {
+  isLogin.value = true;
+}
+</script>
 <style lang="scss" scoped>
 .login-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 8px;
   padding: 12px;
-  -webkit-app-region: no-drag;
-  :deep(.el-input__wrapper) {
-    box-shadow: none;
-    border-radius: none;
-  }
-  .el-form-item {
-    border-bottom: 1px solid #ddd;
-  }
-  .action-link {
-    color: #576b95;
-    font-size: 11px;
-    padding: 0;
-    height: auto;
-    &:hover {
-      color: #576b96;
-    }
-    &:not(.is-disabled) {
-      &:active {
-        color: #576b97;
-      }
-    }
-  }
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
 }
 </style>

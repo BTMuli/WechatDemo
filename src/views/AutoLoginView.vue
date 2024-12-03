@@ -5,9 +5,9 @@
       <div class="username">爱芳芳</div>
     </div>
     <div class="bottom-acts">
-      <ElButton type="success" class="login-button" @click="loginFun()">进入微信</ElButton>
+      <ElButton color="#07c160" size="large" @click="loginFun()">进入微信</ElButton>
       <div class="action-links">
-        <ElLink :underline="false" class="action-link"> 切换账号</ElLink>
+        <ElLink :underline="false" class="action-link" @click="switchAccount()">切换账号</ElLink>
         <div class="action-divider" />
         <ElLink :underline="false" class="action-link">仅传输文件</ElLink>
       </div>
@@ -15,8 +15,18 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { storeToRefs } from "pinia";
+
+import { useAppStore } from "@/store/modules/app.js";
+
 function loginFun() {
   console.log("Logging in...");
+}
+
+const { isLogin } = storeToRefs(useAppStore());
+
+async function switchAccount(): Promise<void> {
+  isLogin.value = false;
 }
 </script>
 <style lang="scss" scoped>
@@ -57,15 +67,6 @@ function loginFun() {
   align-items: center;
   justify-content: center;
   row-gap: 20px;
-
-  .login-button {
-    width: 180px;
-    height: 36px;
-    border-radius: 4px;
-    font-size: 14px;
-    padding: 0;
-    background: #07c160;
-  }
 
   .action-links {
     display: flex;

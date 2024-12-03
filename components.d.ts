@@ -7,6 +7,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    IconQlementineIconsAccount16: typeof import('~icons/qlementine-icons/account16')['default']
+    IconQlementineIconsUser16: typeof import('~icons/qlementine-icons/user16')['default']
+    IconQlementineIconsUser32: typeof import('~icons/qlementine-icons/user32')['default']
     IconQlementineIconsWindowsClose16: typeof import('~icons/qlementine-icons/windows-close16')['default']
     IconQlementineIconsWindowsMaximize16: typeof import('~icons/qlementine-icons/windows-maximize16')['default']
     IconQlementineIconsWindowsMinimize16: typeof import('~icons/qlementine-icons/windows-minimize16')['default']
