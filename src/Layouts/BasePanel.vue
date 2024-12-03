@@ -3,13 +3,13 @@
     <div class="nav">
       <div class="title">{{ props.title }}</div>
       <div class="acts">
-        <div v-if="showSetting" class="act-item" @click="toSetting()" title="设置">
+        <NavActItem v-if="showSetting" title="设置" @click="toSetting()">
           <icon-weui-setting-outlined />
-        </div>
-        <div v-if="showLogin" class="act-item" @click="toLogin()" title="登录">
+        </NavActItem>
+        <NavActItem v-if="showLogin" title="登录" @click="toLogin()">
           <icon-weui-me-outlined />
-        </div>
-        <div
+        </NavActItem>
+        <NavActItem
           v-if="showPin"
           class="act-item"
           :class="{ 'rotate-icon': isPin }"
@@ -18,11 +18,11 @@
         >
           <icon-tdesign-pin v-if="!isPin" />
           <icon-tdesign-pin-filled v-else />
-        </div>
-        <div v-if="showMin" class="act-item" @click="minimize()" title="最小化">
+        </NavActItem>
+        <NavActItem v-if="showMin" class="act-item" @click="minimize()" title="最小化">
           <icon-qlementine-icons-windows-minimize-16 />
-        </div>
-        <div
+        </NavActItem>
+        <NavActItem
           v-if="showMax"
           class="act-item"
           @click="maximize()"
@@ -30,10 +30,10 @@
         >
           <icon-qlementine-icons-windows-unmaximize-16 v-if="isMaximized" />
           <icon-qlementine-icons-windows-maximize-16 v-else />
-        </div>
-        <div v-if="showClose" class="act-item close" @click="close()" title="关闭">
+        </NavActItem>
+        <NavActItem v-if="showClose" class="act-item close" @click="close()" title="关闭">
           <icon-qlementine-icons-windows-close-16 />
-        </div>
+        </NavActItem>
       </div>
     </div>
     <slot></slot>
