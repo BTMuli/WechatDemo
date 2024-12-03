@@ -10,6 +10,7 @@
     "frontendDist": "../dist"
   },
   "app": {
+    "withGlobalTauri": true,
     "windows": [
       {
         "title": "微信",
@@ -17,7 +18,8 @@
         "height": 380,
         "label": "WechatDemo",
         "center": true,
-        "decorations": false
+        "decorations": false,
+        "resizable": false
       }
     ],
     "security": {

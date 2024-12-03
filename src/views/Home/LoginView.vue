@@ -11,8 +11,8 @@ import { storeToRefs } from "pinia";
 
 import BasePanel from "@/Layouts/BasePanel.vue";
 import { useAppStore } from "@/store/modules/app.js";
-import AutoLoginView from "@/views/AutoLoginView.vue";
-import GeneralLoginView from "@/views/GeneralLoginView.vue";
+import AutoLoginView from "@/views/Home/AutoLoginView.vue";
+import GeneralLoginView from "@/views/Home/GeneralLoginView.vue";
 
 const { isLogin } = storeToRefs(useAppStore());
 </script>

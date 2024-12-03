@@ -8,15 +8,20 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     IconQlementineIconsAccount16: typeof import('~icons/qlementine-icons/account16')['default']
+    IconQlementineIconsUser: typeof import('~icons/qlementine-icons/user')['default']
     IconQlementineIconsUser16: typeof import('~icons/qlementine-icons/user16')['default']
-    IconQlementineIconsUser32: typeof import('~icons/qlementine-icons/user32')['default']
+    IconQlementineIconsUser8: typeof import('~icons/qlementine-icons/user8')['default']
     IconQlementineIconsWindowsClose16: typeof import('~icons/qlementine-icons/windows-close16')['default']
     IconQlementineIconsWindowsMaximize16: typeof import('~icons/qlementine-icons/windows-maximize16')['default']
     IconQlementineIconsWindowsMinimize16: typeof import('~icons/qlementine-icons/windows-minimize16')['default']
     IconQlementineIconsWindowsUnmaximize16: typeof import('~icons/qlementine-icons/windows-unmaximize16')['default']
     IconTdesignPin: typeof import('~icons/tdesign/pin')['default']
     IconTdesignPinFilled: typeof import('~icons/tdesign/pin-filled')['default']
+    IconWeuiAccountOutlined: typeof import('~icons/weui/account-outlined')['default']
+    IconWeuiLoginOutlined: typeof import('~icons/weui/login-outlined')['default']
+    IconWeuiMeOutlined: typeof import('~icons/weui/me-outlined')['default']
     IconWeuiSettingOutlined: typeof import('~icons/weui/setting-outlined')['default']
+    IconWeuiUserOutlined: typeof import('~icons/weui/user-outlined')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

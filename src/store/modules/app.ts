@@ -5,9 +5,10 @@ export const useAppStore = defineStore(
   "app",
   () => {
     const isLogin = ref<boolean>(false);
-
+    const useProxy = ref<boolean>(false);
     return {
       isLogin,
+      useProxy,
     };
   },
   {
@@ -15,7 +16,7 @@ export const useAppStore = defineStore(
       {
         key: "app",
         storage: localStorage,
-        pick: ["isLogin"],
+        pick: ["isLogin", "useProxy"],
       },
     ],
   },

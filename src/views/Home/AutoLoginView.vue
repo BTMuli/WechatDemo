@@ -1,15 +1,15 @@
 <template>
   <div class="content">
     <div class="user-info">
-      <ElImage src="/avatar.jpeg" class="avatar" draggable="false" />
+      <ElImage src="/logo.png" class="avatar" fit="contain" />
       <div class="username">爱芳芳</div>
     </div>
     <div class="bottom-acts">
-      <ElButton color="#07c160" size="large" @click="loginFun()">进入微信</ElButton>
+      <div class="login-btn" @click="loginFun()">进入微信</div>
       <div class="action-links">
-        <ElLink :underline="false" class="action-link" @click="switchAccount()">切换账号</ElLink>
+        <div class="action-link" @click="switchAccount()">切换账号</div>
         <div class="action-divider" />
-        <ElLink :underline="false" class="action-link">仅传输文件</ElLink>
+        <div class="action-link" @click="toFileTransfer()">仅传输文件</div>
       </div>
     </div>
   </div>
@@ -27,6 +27,10 @@ const { isLogin } = storeToRefs(useAppStore());
 
 async function switchAccount(): Promise<void> {
   isLogin.value = false;
+}
+
+function toFileTransfer(): void {
+  window.open("https://filehelper.weixin.qq.com/?from=windows&type=recommend", "_blank");
 }
 </script>
 <style lang="scss" scoped>
@@ -47,18 +51,17 @@ async function switchAccount(): Promise<void> {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  row-gap: 16px;
+  row-gap: 24px;
+}
 
-  .avatar {
-    width: 75px;
-    height: 74px;
-    border-radius: 4px;
-    overflow: hidden;
-  }
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+}
 
-  .username {
-    font-size: 20px;
-  }
+.username {
+  font-size: 20px;
 }
 
 .bottom-acts {
@@ -67,34 +70,40 @@ async function switchAccount(): Promise<void> {
   align-items: center;
   justify-content: center;
   row-gap: 20px;
+}
 
-  .action-links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 15px;
+.login-btn {
+  position: relative;
+  width: 180px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background: #07c160;
+  color: white;
+  cursor: pointer;
+}
 
-    .action-link {
-      color: #576b95;
-      font-size: 14px;
-      line-height: 1;
-      padding: 0;
-      height: auto;
+.action-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 15px;
+}
 
-      &:hover {
-        color: #7088b5;
-      }
-
-      &:active {
-        color: #445a84;
-      }
-    }
-  }
+.action-link {
+  color: #436895;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0;
+  height: auto;
+  cursor: pointer;
 }
 
 .action-divider {
   width: 1px;
   height: 12px;
-  background: #f3f3f3;
+  background: rgba(0, 0, 0, 0.1);
 }
 </style>

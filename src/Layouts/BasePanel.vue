@@ -3,8 +3,11 @@
     <div class="nav">
       <div class="title">{{ props.title }}</div>
       <div class="acts">
-        <div v-if="showSetting" class="act-item" @click="setting()" title="设置">
+        <div v-if="showSetting" class="act-item" @click="toSetting()" title="设置">
           <icon-weui-setting-outlined />
+        </div>
+        <div v-if="showLogin" class="act-item" @click="toLogin()" title="登录">
+          <icon-weui-me-outlined />
         </div>
         <div
           v-if="showPin"
@@ -40,8 +43,11 @@
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { ref } from "vue";
 
+import router from "@/router/index.js";
+
 interface BasePanelProps {
   title: string;
+  showLogin?: boolean;
   showSetting?: boolean;
   showClose?: boolean;
   showPin?: boolean;
@@ -52,6 +58,7 @@ interface BasePanelProps {
 
 const props = withDefaults(defineProps<BasePanelProps>(), {
   showSetting: false,
+  showLogin: false,
   showClose: true,
   showPin: false,
   showMin: false,
@@ -61,10 +68,17 @@ const props = withDefaults(defineProps<BasePanelProps>(), {
 
 const isPin = ref<boolean>(false);
 const isMaximized = ref<boolean>(false);
-const isSetting = ref<boolean>(false);
 
-function setting() {
-  isSetting.value = !isSetting.value;
+async function toSetting(): Promise<void> {
+  if (location.hash === "#/login" || location.hash === "#/register") {
+    await router.push({ name: "设置（首页）" });
+  }
+  return;
+}
+
+async function toLogin(): Promise<void> {
+  if (location.hash === "#/setting") router.back();
+  return;
 }
 
 async function switchPin(): Promise<void> {
@@ -108,28 +122,29 @@ async function close(): Promise<void> {
   left: 0;
   top: 0;
   width: 100%;
-  height: 32px;
+  height: 30px;
   background-color: white;
   box-sizing: border-box;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
 .title {
   font-size: 14px;
   color: #a7a6aa;
+  line-height: 25px;
   margin-left: 10px;
 }
 
 .acts {
   display: flex;
   align-items: center;
-  height: 100%;
+  height: 25px;
 }
 
 .act-item {
   width: 46px;
-  height: 100%;
+  height: 25px;
   font-size: 13px;
   cursor: pointer;
   color: #686868;
@@ -142,7 +157,7 @@ async function close(): Promise<void> {
   -webkit-app-region: no-drag;
 
   &:hover {
-    background-color: #e0e0e0;
+    background-color: #f3f3f3;
   }
 
   &:active {
@@ -151,7 +166,7 @@ async function close(): Promise<void> {
 
   &.close {
     &:hover {
-      background-color: #ed4c4c;
+      background-color: #fb7373;
       color: white;
     }
 

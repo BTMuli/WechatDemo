@@ -36,7 +36,7 @@ const vueConfig = {
   files: ["src/**/*.vue"],
   plugins: { vue: pluginVue, import: pluginImport, prettier: pluginPrettier },
   languageOptions: {
-    globals: { ...globals.browser, ...globals.es2021, TGApp: "readonly", window: "readonly" },
+    globals: { ...globals.browser, ...globals.es2021, window: "readonly", NodeJS: "readonly" },
     ecmaVersion: "latest",
     sourceType: "module",
     parser: vue_parser,
